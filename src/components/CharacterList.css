@@ -1,0 +1,23 @@
+.characters__container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    width: 80%;
+    margin: 0px auto;
+}
+.button__container{
+display: flex;
+width: 80%;
+margin: 10px auto;
+justify-content:center;
+}
+
+.button__container> button{
+    color: white;
+    margin: 0 5px;
+}
+
+@media (max-width: 720px) {
+  .characters__container{
+    display: block;
+  }
+}
