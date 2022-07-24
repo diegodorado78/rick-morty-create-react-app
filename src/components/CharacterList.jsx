@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Character } from "./Character";
 import "./CharacterList.css";
+
 function Pages({ page, setPage }) {
   return (
     <div className="button__container">
@@ -21,8 +22,8 @@ function Pages({ page, setPage }) {
 }
 function CharacterList() {
   const [page, setPage] = useState(1);
-  const [characters, setcharacters] = useState([]);
-
+  const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -30,7 +31,8 @@ function CharacterList() {
           `https://rickandmortyapi.com/api/character/?page=${page}`
         );
         const { results } = await response.json(); //desestructuro el array results que necesito del api
-        setcharacters(results);
+        setCharacters(results);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -41,11 +43,15 @@ function CharacterList() {
   return (
     <>
       <Pages page={page} setPage={setPage} />
-      <div className="characters__container">
-        {characters.map((character) => {
-          return <Character key={character.id} character={character} />;
-        })}
-      </div>
+      {loading ? (
+        <h3> loading...</h3>
+      ) : (
+        <div className="characters__container">
+          {characters.map((character) => {
+            return <Character key={character.id} character={character} />;
+          })}
+        </div>
+      )}
       <Pages />
     </>
   );
