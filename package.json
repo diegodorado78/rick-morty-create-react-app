@@ -41,5 +41,5 @@
   "devDependencies": {
     "gh-pages": "^4.0.0"
   },
-  "homepage": "https//diegodorado78.github.io/rick-morty-create-react-app"
+  "homepage": "https://react-api-rick.netlify.app/"
 }
